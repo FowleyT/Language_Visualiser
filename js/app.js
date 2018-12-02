@@ -38,8 +38,11 @@ const showData =  () => {
 const showRepos = () => {
     getRepos(inputValue.value).then((repos) => {
       //console.log(repos);
+      while( reposListContainer.firstChild ){
+        reposListContainer.removeChild( reposListContainer.firstChild );
+      }
         for (var i = 0; i < repos.data.length; i++) {
-				     
+
               reposListContainer.innerHTML +=`<li class="list-group-item"> ${repos.data[i].name} </li>`;
         }
 			});
@@ -50,9 +53,10 @@ const showRepos = () => {
 
 
 searchButton.addEventListener("click", () => {
+
   showData();
   showRepos();
-  showGraph(getRepos(inputValue.value));
+
 
 
 })
